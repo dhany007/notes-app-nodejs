@@ -25,7 +25,7 @@ const addNoteHandler = (request, h) => {
       status: 'success',
       message: 'Catatan berhasil ditambahkan',
       data: {
-        notedId: id,
+        noteId: id,
       },
     });
     response.code(201);
@@ -77,7 +77,7 @@ const editNoteByHandler = (request, h) => {
 
   const updatedAt = new Date().toISOString();
 
-  const index = notes.findIndex((e) => e.id === id)[0];
+  const index = notes.findIndex((e) => e.id === id);
   if (index !== -1) {
     notes[index] = {
       ...notes[index],
@@ -86,7 +86,6 @@ const editNoteByHandler = (request, h) => {
       body,
       updatedAt,
     };
-
     const response = h.response({
       status: 'success',
       message: 'Catatan berhasil diperbaharui',
